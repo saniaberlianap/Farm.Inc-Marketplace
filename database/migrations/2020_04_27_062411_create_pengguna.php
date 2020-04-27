@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUser extends Migration
+class CreatePengguna extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateUser extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->bigIncrements('id_user');
+        Schema::create('pengguna', function (Blueprint $table) {
+            $table->bigIncrements('id_pengguna');
             $table->string('nama', 50);
             $table->string('email', 50);
             $table->string('password', 100);
@@ -31,6 +31,6 @@ class CreateUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('pengguna');
     }
 }

@@ -15,12 +15,12 @@ class CreateJual extends Migration
     {
         Schema::create('jual', function (Blueprint $table) {
             $table->bigIncrements('id_jual');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('pengguna_id');
             $table->unsignedBigInteger('produk_id');
             $table->timestamps();
 
 
-            $table->foreign('user_id')->references('id_user')->on('user')
+            $table->foreign('pengguna_id')->references('id_pengguna')->on('pengguna')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
@@ -28,11 +28,7 @@ class CreateJual extends Migration
             $table->foreign('produk_id')->references('id_produk')->on('produk')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
-
-
         });
-
-
     }
 
     /**
