@@ -13,7 +13,12 @@
               <li class="">
                 <a class="nav-link" href="{{ route('produk.index') }}"><i class="far fa-square"></i> <span>Produk</span></a>
               </li>
-              
+              <li class="">
+                <a class="nav-link" href="{{ route('pengguna.index') }}"><i class="far fa-square"></i> <span>User</span></a>
+              </li>
+              <li class="">
+                <a class="nav-link" href="{{ route('jual.index') }}"><i class="far fa-square"></i> <span>Data Jual</span></a>
+              </li>
           </ul>
         </aside>
       </div>
