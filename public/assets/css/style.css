@@ -1238,7 +1238,7 @@ h6 .badge {
   color: #fff !important; }
 
 .btn-success, .btn-success.disabled {
-  box-shadow: 0 2px 6px #81d694;
+  box-shadow: 0 2px 6px #2c6ca9;
   background-color: #47c363;
   border-color: #47c363;
   color: #fff; }
@@ -1537,7 +1537,7 @@ h6 .badge {
   left: 0;
   width: 100%;
   height: 115px;
-  background-color: #6777ef;
+  background-color: #a4bda4;
   z-index: -1; }
 
 .navbar {

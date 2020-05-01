@@ -25,9 +25,9 @@ class JualController extends Controller
 
          $pengguna = Pengguna::all();
          $produk = Produk::all();
+         $user = \Session::get('user');
 
-
-        return view('jual.index', compact('dataJual','pengguna', 'produk'));
+        return view('jual.index', compact('dataJual','pengguna', 'produk', 'user'));
     }
 
     /**

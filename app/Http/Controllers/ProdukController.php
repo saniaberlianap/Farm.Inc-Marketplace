@@ -26,7 +26,9 @@ class ProdukController extends Controller
 
          $kategori = Kategori::all();
 
-        return view('produk.index', compact('dataProduk', 'kategori'));
+         $user = \Session::get('user');
+
+        return view('produk.index', compact('dataProduk', 'kategori', 'user'));
     }
 
     /**

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Kategori;
 
+use App\Models\User;
+
 class KategoriController extends Controller
 {
     /**
@@ -13,12 +15,16 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    
+
     public function index(Request $request)
     {
+        $user = \Session::get('user');
         
         $search = $request->get('search');
         $dataKategori = Kategori::where('jenis','like', '%'.$search.'%')->paginate(5);
-        return view('kategori.index', ['dataKategori' => $dataKategori]);
+        return view('kategori.index', compact('dataKategori', 'user'));
        
 
         $dataKategori = Kategori::latest()->paginate(5);

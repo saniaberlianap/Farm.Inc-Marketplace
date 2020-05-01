@@ -22,9 +22,10 @@ class PenggunaController extends Controller
             ->orWhere('nohp', 'LIKE', '%'.$request->search.'%');
         })->paginate(10);
 
+        $user = \Session::get('user');
          
 
-        return view('pengguna.index', compact('pengguna'));
+        return view('pengguna.index', compact('pengguna', 'user'));
     }
 
     /**
