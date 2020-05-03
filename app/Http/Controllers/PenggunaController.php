@@ -35,7 +35,8 @@ class PenggunaController extends Controller
      */
     public function create()
     {
-        return view('pengguna.create');
+        $user = \Session::get('user');
+        return view('pengguna.create', compact('user'));
     }
 
     /**
@@ -60,7 +61,7 @@ class PenggunaController extends Controller
             'email'   =>  $request->email,
             'alamat'  =>  $request->alamat,
             'nohp'    =>  $request->nohp,
-            'password'=>  bcrypt($request->password)
+            'password'=>  $request->password
         );
 
         Pengguna::create($form_data);
@@ -89,7 +90,9 @@ class PenggunaController extends Controller
     {
         $pengguna = Pengguna::find($id_pengguna);
 
-        return view('pengguna.edit', compact('pengguna'));
+        $user = \Session::get('user');
+
+        return view('pengguna.edit', compact('pengguna', 'user'));
     }
 
     /**

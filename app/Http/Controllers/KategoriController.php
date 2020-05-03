@@ -40,7 +40,9 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('kategori.create');
+        $user = \Session::get('user');
+
+        return view('kategori.create', compact('user'));
     }
 
     /**
@@ -86,7 +88,9 @@ class KategoriController extends Controller
     {
         $dataKategori = Kategori::find($id_kategori);
 
-        return view('kategori.edit', compact('dataKategori'));
+        $user = \Session::get('user');
+
+        return view('kategori.edit', compact('dataKategori', 'user'));
     }
     
 

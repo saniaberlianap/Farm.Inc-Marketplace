@@ -38,9 +38,12 @@ class ProdukController extends Controller
      */
     public function create()
     {
+        
         $kategori = Kategori::all()->sortBy('jenis');
 
-        return view('produk.create', compact('kategori'));
+        $user = \Session::get('user');
+
+        return view('produk.create', compact('kategori', 'user'));
     }
 
     /**
@@ -97,8 +100,10 @@ class ProdukController extends Controller
     {
          $kategori = Kategori::all()->sortBy('jenis');
 
+         $user = \Session::get('user');
+
         $dataProduk = Produk::findOrFail($id_produk);
-        return view('produk.edit', compact('dataProduk'))->with('kategori', $kategori);
+        return view('produk.edit', compact('dataProduk', 'user'))->with('kategori', $kategori);
     }
 
     /**
