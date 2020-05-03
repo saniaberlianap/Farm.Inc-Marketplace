@@ -38,13 +38,8 @@
                 <input type="text" name="nama_produk" class="form-control">
               </div>
               <div class="form-group">
-                  <label>Kategori</label>
-                      <select class="form-control" id="kategori_id" name="kategori_id" class="form-control">
-                          <option value="" hidden>Pilih Kategori</option>
-                                @foreach($kategori as $k)
-                          <option value="{{ $k->id_kategori }}">{{ $k->jenis }}</option>
-                                @endforeach
-                      </select>
+                <label>Kategori</label>
+                <input type="text" name="kategori" class="form-control">
               </div>
                <div class="form-group">
                 <label>Deskripsi</label>
@@ -53,6 +48,15 @@
                <div class="form-group">
                 <label>Harga</label>
                 <input type="number" name="harga" class="form-control">
+              </div>
+              <div class="form-group">
+                  <label>User</label>
+                      <select class="form-control" id="pengguna_id" name="pengguna_id" class="form-control">
+                          <option value="" hidden>Pilih User</option>
+                                @foreach($pengguna as $p)
+                          <option value="{{ $p->id_pengguna }}">{{ $p->nama }}</option>
+                                @endforeach
+                      </select>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Add</button>

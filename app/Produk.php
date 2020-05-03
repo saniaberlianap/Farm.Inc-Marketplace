@@ -10,15 +10,12 @@ class Produk extends Model
 
     protected $primaryKey = 'id_produk';
 
-    protected $fillable = ['kategori_id', 'nama_produk', 'deskripsi', 'harga', 'image'];
+    protected $fillable = ['pengguna_id', 'nama_produk', 'kategori', 'deskripsi', 'harga', 'image'];
 
-    public function kategori(){
-    	return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
+    public function pengguna(){
+    	return $this->belongsTo(Pengguna::class, 'pengguna_id', 'id_pengguna');
     }
 
-    public function jual(){
-    	return $this->belongsTo(Kategori::class, 'produk_id', 'id_produk');
-    }
 
      
 

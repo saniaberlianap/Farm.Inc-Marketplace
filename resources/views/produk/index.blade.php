@@ -45,6 +45,7 @@
                   <th scope="col">Kategori</th>
                   <th scope="col">Deskripsi</th>
                   <th scope="col">Harga</th>
+                  <th scope="col">User</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -56,9 +57,10 @@
                         <img src="{{ URL::to('/') }}/images/{{ $produk->image }}" class="img-thumbnail" width="75"/>
                       </td>
                   <td>{{ $produk->nama_produk }}</td>
-                  <td>{{ $produk->jenis }}</td>
+                  <td>{{ $produk->kategori }}</td>
                   <td>{{ $produk->deskripsi }}</td>
                   <td>{{ $produk->harga }}</td>
+                  <td>{{ $produk->nama }}</td>
                   
                   <td>
                     <a href="{{ route('produk.edit', ['$id_produk' => $produk->id_produk]) }}">

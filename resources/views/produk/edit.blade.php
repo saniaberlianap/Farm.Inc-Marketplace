@@ -28,20 +28,24 @@
                 <input type="text" name="nama_produk" class="form-control" value="{{ $dataProduk->nama_produk }}">
               </div>
               <div class="form-group">
-                <label>Kategori Produk</label>
-                  <select class="form-control" name="kategori_id">
-                          @foreach( $kategori as $k)
-                              <option value="{{ $k->id_kategori }}" {{ $k->id_kategori == $dataProduk->kategori_id ? 'selected="selected"' : '' }}> {{ $k->jenis}} </option>
-                          @endforeach
-          </select></div>
+                <label>Kategori</label>
+                <input type="text" name="kategori" class="form-control" value="{{ $dataProduk->kategori }}">
+              </div>
           <div class="form-group">
                 <label>Deskripsi</label>
                 <input type="text" name="deskripsi" class="form-control" value="{{ $dataProduk->deskripsi }}">
               </div>
               <div class="form-group">
                 <label>Harga</label>
-                <input type="text" name="harga" class="form-control" value="{{ $dataProduk->harga }}">
+                <input type="number" name="harga" class="form-control" value="{{ $dataProduk->harga }}">
               </div>
+              <div class="form-group">
+                <label>User Pemilik</label>
+                  <select class="form-control" name="pengguna_id">
+                          @foreach( $pengguna as $p)
+                              <option value="{{ $p->id_pengguna }}" {{ $p->id_pengguna == $dataProduk->pengguna_id ? 'selected="selected"' : '' }}> {{ $p->nama}} </option>
+                          @endforeach
+          </select></div>
               <div class="form-group">
                 <label>Select Product Image</label>
                   <div class="col-md-8">

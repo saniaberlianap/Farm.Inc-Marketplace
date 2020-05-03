@@ -15,15 +15,16 @@ class CreateProduk extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->bigIncrements('id_produk');
-            $table->unsignedBigInteger('kategori_id');
+            $table->unsignedBigInteger('pengguna_id');
             $table->string('nama_produk');
+            $table->string('kategori');
             $table->string('deskripsi');
             $table->string('harga');
             $table->string('image');
             $table->timestamps();
 
 
-            $table->foreign('kategori_id')->references('id_kategori')->on('kategori')
+            $table->foreign('pengguna_id')->references('id_pengguna')->on('pengguna')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
         });

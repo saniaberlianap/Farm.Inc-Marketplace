@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Produk;
 
-use App\Kategori;
+use App\Pengguna;
 
 class ProdukController extends Controller
 {
@@ -19,16 +19,17 @@ class ProdukController extends Controller
     {
         $dataProduk = Produk::when($request->search, function($query) use($request){
             $query->where('nama_produk', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('kategori', 'LIKE', '%'.$request->search.'%')
             ->orWhere('deskripsi', 'LIKE', '%'.$request->search.'%')
             ->orWhere('harga', 'LIKE', '%'.$request->search.'%')
             ->orWhere('jenis', 'LIKE', '%'.$request->search.'%');
-        })->join('kategori', 'id_kategori', '=', 'produk.kategori_id')->orderBy('id_produk', 'asc')->paginate(10);
+        })->join('pengguna', 'id_pengguna', '=', 'produk.pengguna_id')->orderBy('id_produk', 'asc')->paginate(10);
 
-         $kategori = Kategori::all();
+         $pengguna = Pengguna::all();
 
          $user = \Session::get('user');
 
-        return view('produk.index', compact('dataProduk', 'kategori', 'user'));
+        return view('produk.index', compact('dataProduk', 'pengguna', 'user'));
     }
 
     /**
@@ -39,11 +40,11 @@ class ProdukController extends Controller
     public function create()
     {
         
-        $kategori = Kategori::all()->sortBy('jenis');
+        $pengguna = Pengguna::all()->sortBy('nama');
 
         $user = \Session::get('user');
 
-        return view('produk.create', compact('kategori', 'user'));
+        return view('produk.create', compact('pengguna', 'user'));
     }
 
     /**
@@ -56,9 +57,10 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required',
+            'kategori' => 'required',
             'deskripsi' => 'required',
             'harga' => 'required',
-            'kategori_id' => 'required',
+            'pengguna_id' => 'required',
             'image' => 'required|image|max:2048'
         ]);
 
@@ -68,9 +70,10 @@ class ProdukController extends Controller
         $image->move(public_path('images'), $new_name);
         $form_data = array(
             'nama_produk'    =>  $request->nama_produk,
+            'kategori'    =>  $request->kategori,
             'deskripsi'     =>  $request->deskripsi,
             'harga'     =>  $request->harga,
-            'kategori_id'       =>  $request->kategori_id,
+            'pengguna_id'       =>  $request->pengguna_id,
             'image'         =>  $new_name
         );
 
@@ -98,12 +101,12 @@ class ProdukController extends Controller
      */
     public function edit($id_produk)
     {
-         $kategori = Kategori::all()->sortBy('jenis');
+         $pengguna = Pengguna::all()->sortBy('nama');
 
          $user = \Session::get('user');
 
         $dataProduk = Produk::findOrFail($id_produk);
-        return view('produk.edit', compact('dataProduk', 'user'))->with('kategori', $kategori);
+        return view('produk.edit', compact('dataProduk', 'user'))->with('pengguna', $pengguna);
     }
 
     /**

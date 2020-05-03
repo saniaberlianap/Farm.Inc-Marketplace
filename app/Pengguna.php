@@ -14,8 +14,8 @@ class Pengguna extends Model
     						'nama', 'email', 'password', 'alamat', 'nohp'
     					  ];
 
-    public function jual()
+    public function produk()
     {
-    	return $this->belongsTo(Produk::class, 'pengguna_id', 'id_pengguna');
+    	return $this->hasMany(Produk::class, 'kategori_id', 'id_kategori');
     }
 }

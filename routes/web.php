@@ -35,15 +35,6 @@ Route::group(['middleware' => ['admin']], function(){
     Route::get('/user/logout', 'UserController@logout');
 
 
-	Route::resource('kategori', 'KategoriController');
-	Route::get('kategori', ['as' => 'kategori.index', 'uses' => 'KategoriController@index']);
-	Route::get('kategori/create', ['as' => 'kategori.create', 'uses' => 'KategoriController@create']);
-	Route::post('kategori', ['as' => 'kategori.store', 'uses' => 'KategoriController@store']);
-	Route::get('kategori/edit/{id}', ['as' => 'kategori.edit', 'uses' => 'KategoriController@edit']);
-	Route::put('kategori/edit/{id}', ['as' => 'kategori.update', 'uses' => 'KategoriController@update']);
-	Route::get('kategori/delete/{id}', ['as' => 'kategori.delete', 'uses' => 'KategoriController@delete']);
-
-
 	Route::resource('produk', 'ProdukController');
 	Route::get('produk', ['as' => 'produk.index', 'uses' => 'ProdukController@index']);
 	Route::get('produk/create', ['as' => 'produk.create', 'uses' => 'ProdukController@create']);
@@ -61,11 +52,6 @@ Route::group(['middleware' => ['admin']], function(){
 	Route::post('pengguna/edit/{id}', ['as' => 'pengguna.update', 'uses' => 'PenggunaController@update']);
 	Route::get('pengguna/delete/{id}', ['as' => 'pengguna.delete', 'uses' => 'PenggunaController@delete']);
 
-
-
-	Route::resource('jual', 'JualController');
-	Route::get('jual', ['as' => 'jual.index', 'uses' => 'JualController@index']);
-	Route::get('jual/delete/{id}', ['as' => 'jual.delete', 'uses' => 'JualController@delete']);
 
  });
 
