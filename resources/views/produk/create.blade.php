@@ -30,9 +30,9 @@
             <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
-                <label>Select Product Image</label>
-                    <input type="file" name="image" class="form-control"/>
-                </div>
+                <label>Gambar</label>
+                <input type="text" name="image" class="form-control">
+              </div>
               <div class="form-group">
                 <label>Nama Produk</label>
                 <input type="text" name="nama_produk" class="form-control">

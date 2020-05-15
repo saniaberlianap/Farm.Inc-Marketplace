@@ -21,8 +21,7 @@ class ProdukController extends Controller
             $query->where('nama_produk', 'LIKE', '%'.$request->search.'%')
             ->orWhere('kategori', 'LIKE', '%'.$request->search.'%')
             ->orWhere('deskripsi', 'LIKE', '%'.$request->search.'%')
-            ->orWhere('harga', 'LIKE', '%'.$request->search.'%')
-            ->orWhere('jenis', 'LIKE', '%'.$request->search.'%');
+            ->orWhere('harga', 'LIKE', '%'.$request->search.'%');
         })->join('pengguna', 'id_pengguna', '=', 'produk.pengguna_id')->orderBy('id_produk', 'asc')->paginate(10);
 
          $pengguna = Pengguna::all();
@@ -61,20 +60,20 @@ class ProdukController extends Controller
             'deskripsi' => 'required',
             'harga' => 'required',
             'pengguna_id' => 'required',
-            'image' => 'required|image|max:2048'
+            'image' => 'required'
         ]);
 
-        $image = $request->file('image');
+        // $image = $request->file('image');
 
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $new_name);
+        // $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        // $image->move(public_path('images'), $new_name);
         $form_data = array(
             'nama_produk'    =>  $request->nama_produk,
             'kategori'    =>  $request->kategori,
             'deskripsi'     =>  $request->deskripsi,
             'harga'     =>  $request->harga,
             'pengguna_id'       =>  $request->pengguna_id,
-            'image'         =>  $new_name
+            'image'         =>  $request->image
         );
 
         Produk::create($form_data);
@@ -118,13 +117,18 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id_produk)
     {
+        $request->validate([
+            'nama_produk' => 'required',
+            'kategori' => 'required',
+            'deskripsi' => 'required',
+            'harga' => 'required',
+            'pengguna_id' => 'required',
+            'image' => 'required'
+        ]);
+
+
         $dataProduk = Produk::find($id_produk);
         $dataProduk->update($request->all());
-        if ($request->hasFile('image')) {
-            $request->file('image')->move('images/',$request->file('image')->getClientOriginalName());
-            $dataProduk->image = $request->file('image')->getClientOriginalName();
-            $dataProduk->save();
-        }
        return redirect()->route('produk.index')->with('success', 'Data is Successfully Updated');
     }
 

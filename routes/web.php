@@ -30,7 +30,7 @@ Route::group(['middleware' => ['logged']], function(){
 Route::group(['middleware' => ['admin']], function(){
 
 
-	Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+	Route::get('/dashboard', 'DashboardController@index');
 
     Route::get('/user/logout', 'UserController@logout');
 

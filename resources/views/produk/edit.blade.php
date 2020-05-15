@@ -22,7 +22,10 @@
           <div class="card-body">
             <form method="post" action="{{ route('produk.update', $dataProduk->id_produk) }}" enctype="multipart/form-data">
                   @csrf
-                
+              <div class="form-group">
+                <label>Gambar</label>
+                <input type="text" name="image" class="form-control" value="{{ $dataProduk->image }}">
+              </div>
               <div class="form-group">
                 <label>Nama Produk</label>
                 <input type="text" name="nama_produk" class="form-control" value="{{ $dataProduk->nama_produk }}">
@@ -46,14 +49,7 @@
                               <option value="{{ $p->id_pengguna }}" {{ $p->id_pengguna == $dataProduk->pengguna_id ? 'selected="selected"' : '' }}> {{ $p->nama}} </option>
                           @endforeach
           </select></div>
-              <div class="form-group">
-                <label>Select Product Image</label>
-                  <div class="col-md-8">
-                    <input type="file" name="image"/>
-                      <img src="{{ URL::to('/')}}/images/{{ $dataProduk->image }}" class="img-thumbnail" width="100">
-                        <input type="hidden" name="hidden_image" value="{{ $dataProduk->image }}" class="form-control">
-                  </div>
-              </div>
+              
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">SAVE</button>
               </div>
